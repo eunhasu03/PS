@@ -1,0 +1,11 @@
+-- 코드를 작성해주세요
+SELECT ID,
+-- WINDOW 함수 활용하여 4개의 그룹으로 분류
+    CASE (NTILE(4) OVER (ORDER BY SIZE_OF_COLONY DESC))
+        WHEN 1 THEN 'CRITICAL'
+        WHEN 2 THEN 'HIGH'
+        WHEN 3 THEN 'MEDIUM'
+        WHEN 4 THEN 'LOW'
+        END AS COLONY_NAME
+FROM ECOLI_DATA
+ORDER BY ID ASC
